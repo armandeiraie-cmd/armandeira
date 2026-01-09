@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Armando Dias Bandeira Junior – Desenvolvedor Full Stack & MES</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0b1120;
+      --bg-alt: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.1);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #111827;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+    }
+    @media (min-width: 768px) {
+      header { flex-direction: row; justify-content: space-between; align-items: center; }
+    }
+    .hero-text h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin-bottom: .5rem;
+    }
+    .hero-text h2 {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--muted);
+      max-width: 40rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      margin-top: 1.5rem;
+    }
+    .btn {
+      padding: .7rem 1.3rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: .95rem;
+      cursor: pointer;
+      background: transparent;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #020617;
+      font-weight: 600;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.35);
+    }
+    .btn:hover { opacity: .9; }
+
+    .header-actions {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .lang-switcher {
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .lang-switcher .lang {
+      color: #9ca3af;
+      text-decoration: none;
+    }
+
+    .lang-switcher .lang.active {
+      color: #e5e7eb;
+      font-weight: 600;
+      border-bottom: 1px solid #38bdf8;
+    }
+
+    .lang-switcher .sep {
+      color: #4b5563;
+    }
+
+    .btn-pdf {
+      background: transparent;
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-pdf:hover {
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    section {
+      padding: 2.5rem 0 0;
+    }
+    section h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    section p {
+      color: var(--muted);
+      max-width: 48rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+    @media (min-width: 768px) {
+      .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, #1f2937 0, #020617 60%);
+      border-radius: .85rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 1rem 1.1rem;
+    }
+    .card h4 {
+      font-size: 1rem;
+      margin-bottom: .3rem;
+    }
+    .card span {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+    .card ul {
+      margin-top: .5rem;
+      padding-left: 1.1rem;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .card ul li { margin-bottom: .25rem; }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: .75rem;
+    }
+    .tag {
+      font-size: .8rem;
+      padding: .25rem .6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      font-size: .9rem;
+      color: var(--muted);
+    }
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: .5rem;
+    }
+
+    @media print {
+      .header-actions, .hero-actions, footer { display: none; }
+      body { background: white; color: #000; }
+      a { color: #0066cc; }
+      .card { background: #f5f5f5; border: 1px solid #ddd; color: #000; }
+      .tag { background: #e0e0e0; color: #333; }
+      section h3 { color: #000; }
+      section p { color: #333; }
+      .card span, .card ul { color: #555; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="hero-text">
+        <h1>Armando Dias Bandeira Junior</h1>
+        <h2>
+          Desenvolvedor full stack e Application Engineer em MES/MOM com TrakSYS, com mais de 15 anos de experiência em desenvolvimento de software e atuação em projetos para AB InBev, Gerdau, Beiersdorf, FCA, Ford, Toyota e Petrobras.
+        </h2>
+        <div class="hero-actions">
+          <a href="#projetos" class="btn btn-primary">Ver meus projetos</a>
+          <a href="#contato" class="btn">Falar comigo</a>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="lang-switcher">
+          <a href="index.html" class="lang active">PT</a>
+          <span class="sep">|</span>
+          <a href="index-en.html" class="lang">EN</a>
+        </div>
+        <button class="btn-pdf" onclick="window.print()">📥 PDF</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="sobre">
+        <h3>Sobre mim</h3>
+        <p>
+          Sou um profissional <strong>dedicado</strong> com mais de 15 anos de experiência em desenvolvimento de software e soluções MES/MOM, atuando principalmente com a plataforma TrakSYS em projetos para indústrias de bebidas, aço, cosméticos e automotivo.
+          Hoje trabalho como Application Engineer para a AB InBev por meio da UT-TECH, atendendo plantas no México e em outros países da América Central e América Latina, unindo suporte nível 2, desenvolvimento de novas funcionalidades e melhorias contínuas em ambiente ágil.
+          Ao longo da carreira, participei de implantações e evoluções de sistemas em múltiplos sites, sempre com foco em padronização, confiabilidade dos dados e ganhos operacionais mensuráveis.
+        </p>
+      </section>
+
+      <section id="experiencia">
+        <h3>Experiência</h3>
+        <div class="grid grid-2">
+          <!-- UT-TECH -->
+          <article class="card">
+            <h4>Application Engineer · UT-TECH</h4>
+            <span>2025 – atual · América Central &amp; América Latina</span>
+            <ul>
+              <li>Atuação como Application Engineer para a AB InBev, atendendo plantas no México e em outros países da América Central e América Latina.</li>
+              <li>Suporte nível 2 ao sistema MES baseado em TrakSYS, investigando incidentes, realizando análise de causa raiz e garantindo estabilidade da solução.</li>
+              <li>Desenvolvimento de novas funcionalidades, correção de bugs e implementação de melhorias contínuas em C#, JavaScript, CSS e MS SQL, integradas ao pipeline na Azure DevOps e a um processo Scrum completo.</li>
+            </ul>
+          </article>
+
+          <!-- HSI -->
+          <article class="card">
+            <h4>Systems Analyst · HSI Smart Solutions</h4>
+            <span>2019 – 2022 · 2023 – 2025 · São Bernardo do Campo, SP</span>
+            <ul>
+              <li>Analista MES/MOM com Parsec TrakSYS para clientes como AB InBev, Beiersdorf e Fiat Chrysler Automobiles, desenvolvendo soluções web com ASP.NET, C#, HTML, CSS, JavaScript e T‑SQL.</li>
+              <li>Responsável pela evolução do Line Monitoring System (LMS) da AB InBev, aplicando UI/UX e otimização de queries, elevando o NPS de 25 para 87 pontos.</li>
+              <li>De 2024 a 2025, participação em projeto MES da AB InBev com TrakSYS, atuando na correção de bugs, issues e user stories em C#, MS SQL, CSS e JavaScript, integrado ao pipeline na Azure DevOps e a cerimônias Scrum.</li>
+              <li>De maio/2025 a agosto/2025, participação na implantação do MES TrakSYS na Gerdau Siderperú, desenvolvendo telas operacionais para os processos de aciaria e lingotamento contínuo.</li>
+            </ul>
+          </article>
+
+          <!-- OiC -->
+          <article class="card">
+            <h4>Database Analyst · OiC Optical Imaging</h4>
+            <span>2017 – 2019 · São Bernardo do Campo, SP</span>
+            <ul>
+              <li>Otimização de consultas SQL em Oracle e PostgreSQL e modelagem de bancos relacionais para catálogos eletrônicos de montadoras como Ford, Toyota e Honda.</li>
+              <li>Desenvolvimento de API REST em Java 15 e Eclipse Vert.x para integração com o portal partslink24, incluindo migração de Oracle 12c para PostgreSQL com revisão de queries.</li>
+            </ul>
+          </article>
+
+          <!-- Pennacorp -->
+          <article class="card">
+            <h4>Software Developer · Pennacorp Sistemas</h4>
+            <span>2009 – 2011 · Santo André, SP</span>
+            <ul>
+              <li>Manutenção e evolução de ERP, migrando funcionalidades de um sistema legado em Delphi 7 para um novo ERP em PHP com MySQL.</li>
+              <li>Desenvolvimento de sites institucionais usando HTML, CSS, JavaScript e jQuery, além de suporte técnico a usuários do ERP.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="projetos">
+        <h3>Projetos em destaque</h3>
+        <div class="grid grid-3">
+          <article class="card">
+            <h4>MES TrakSYS – AB InBev</h4>
+            <span>TrakSYS · C# · MS SQL · Azure DevOps</span>
+            <p>
+              Participação em iniciativas de MES com TrakSYS em plantas da AB InBev no México e em outros países da América Central
+              e América Latina, atuando na correção de bugs, implementação de novas funcionalidades e tratamento de issues em C#, MS SQL,
+              CSS e JavaScript, sempre integrado a pipelines de CI/CD e ao processo Scrum.
+            </p>
+          </article>
+
+          <article class="card">
+            <h4>Implantação MES – Gerdau Siderperú</h4>
+            <span>TrakSYS · MES/MOM</span>
+            <p>
+              Desenvolvimento de telas operacionais para os processos de aciaria e lingotamento contínuo na planta da Gerdau Siderperú,
+              garantindo boa experiência para operadores e confiabilidade na captura de dados de produção em tempo real.
+            </p>
+          </article>
+
+          <article class="card">
+            <h4>Line Monitoring System – AB InBev</h4>
+            <span>TrakSYS · C# · Azure SQL</span>
+            <p>
+              Evolução do sistema de monitoramento de linhas de produção, usado por operadores, supervisores e gestores para acompanhar
+              paradas, causas raiz e indicadores de produtividade, com melhoria do NPS de 25 para 87 após otimizações de UI/UX
+              e desempenho de consultas.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h3>Skills</h3>
+        <div>
+          <strong>Backend</strong>
+          <div class="skills-list">
+            <span class="tag">C#</span>
+            <span class="tag">ASP.NET</span>
+            <span class="tag">.NET Core</span>
+            <span class="tag">.NET Framework</span>
+            <span class="tag">Java</span>
+            <span class="tag">PHP</span>
+            <span class="tag">Python</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Express.js</span>
+          </div>
+        </div>
+        <div style="margin-top:1rem;">
+          <strong>Frontend</strong>
+          <div class="skills-list">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">ECMAScript</span>
+            <span class="tag">jQuery</span>
+            <span class="tag">React</span>
+            <span class="tag">Angular</span>
+            <span class="tag">UI/UX</span>
+            <span class="tag">Acessibilidade W3C</span>
+          </div>
+        </div>
+        <div style="margin-top:1rem;">
+          <strong>Bancos de dados</strong>
+          <div class="skills-list">
+            <span class="tag">SQL Server</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Oracle 12c</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">MongoDB</span>
+          </div>
+        </div>
+        <div style="margin-top:1rem;">
+          <strong>DevOps &amp; Cloud</strong>
+          <div class="skills-list">
+            <span class="tag">Azure DevOps</span>
+            <span class="tag">AWS (Elastic Beanstalk, EC2, S3)</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Azure SQL Database</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="contato">
+        <h3>Contato</h3>
+        <p>Quer conversar sobre um projeto ou oportunidade?</p>
+        <div class="contact-links">
+          <a href="mailto:mail.armando@gmail.com">mail.armando@gmail.com</a>
+          <a href="https://www.linkedin.com/in/armandodbjr" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://github.com/git-armandojr" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 Armando Dias Bandeira Junior</span>
+    </footer>
+  </div>
+</body>
+</html>
